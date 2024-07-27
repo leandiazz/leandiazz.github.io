@@ -1,6 +1,6 @@
 ---
 interface Props {
-  title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
@@ -8,43 +8,43 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
-  <body>
-    <slot />
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
 <style is:global>
-  :root {
-    --purple-light: #ebecfa;
-    --black: #111111;
-    --white: #f5f5f5;
-    font-family: "Geist";
-    background-color: var(--purple-light);
-  }
-  .contact_link {
-    text-decoration: none;
-    color: currentColor;
-  }
+	:root {
+		--purple-light: #ebecfa;
+		--black: #111111;
+		--white: #f5f5f5;
+		font-family: "Geist";
+		background-color: var(--purple-light);
+	}
+	.contact_link {
+		text-decoration: none;
+		color: currentColor;
+	}
 
-  /* geist-sans-latin-400-normal */
-  @font-face {
-    font-family: "Geist";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src:
-      url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2)
-        format("woff2"),
-      url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff)
-        format("woff"),
-      url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.ttf)
-        format("truetype");
-  }
+	/* geist-sans-latin-400-normal */
+	@font-face {
+		font-family: "Geist";
+		font-style: normal;
+		font-display: swap;
+		font-weight: 400;
+		src:
+			url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2)
+				format("woff2"),
+			url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff)
+				format("woff"),
+			url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.ttf)
+				format("truetype");
+	}
 </style>

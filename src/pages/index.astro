@@ -4,355 +4,732 @@ import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
+<!-- ! TODO read and apply this https://astro.build/blog/future-of-astro-zero-js-view-transitions/ -->
 <style>
-  :root {
-    --section-border: 30px;
-    --section-padding: 50px;
-    --items-gap: 30px;
-  }
+	:root {
+		--section-border: 30px;
+		--section-padding: 50px;
+		--items-gap: 30px;
+	}
 
-  .first-section {
-    max-width: 1660px;
-    margin-inline: auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1.4fr;
-    gap: var(--items-gap);
-    & .group {
-      background-color: var(--white);
-      border-radius: var(--section-border);
-      padding: var(--section-padding);
-    }
-    .about {
-      h1 {
-        font-size: 40px;
-        margin: 0;
-        line-height: 61px;
-      }
-      p {
-        font-size: 18px;
-        line-height: 35px;
-      }
-      .contact {
-        padding-top: 4rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        & ul {
-          list-style: none;
-          padding-left: 0;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-        & button {
-          cursor: pointer;
-          background-color: var(--black);
-          color: var(--white);
-          border: 0;
-          font-size: 28px;
-          padding: 10px 40px;
-          border-radius: 25px;
-        }
-      }
-    }
-    & .controls {
-      display: flex;
-      flex-direction: column;
-      gap: var(--items-gap);
-      & .group {
-        height: 50%;
-      }
-    }
-    .clock {
-      display: grid;
-      place-items: center;
-    }
-    .studies {
-      .items {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .study {
-        h3 {
-          font-size: 18px;
-          margin: 0;
-          & span {
-            font-size: 12px;
-            font-weight: normal;
-          }
-        }
-        p {
-          font-size: 15px;
-          line-height: 28px;
-        }
-      }
-    }
-  }
-  .second-section {
-    margin-top: var(--items-gap);
-    display: grid;
-    grid-template-columns: 3fr 1.365fr;
-    max-width: 1660px;
-    margin-inline: auto;
-    gap: var(--items-gap);
-    & .group {
-      background-color: var(--white);
-      border-radius: var(--section-border);
-      padding: var(--section-padding);
-    }
+	.first-section {
+		max-width: 1660px;
+		margin-inline: auto;
+		display: grid;
+		grid-template-columns: 2fr 1fr 1.4fr;
+		gap: var(--items-gap);
+		& .group {
+			background-color: var(--white);
+			border-radius: var(--section-border);
+			padding: var(--section-padding);
+		}
+		.about {
+			h1 {
+				font-size: 40px;
+				margin: 0;
+				line-height: 61px;
+			}
+			p {
+				font-size: 18px;
+				line-height: 35px;
+			}
+			.contact {
+				padding-top: 4rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				& ul {
+					list-style: none;
+					padding-left: 0;
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+				}
+				& .contactme {
+					cursor: pointer;
+					background-color: var(--black);
+					color: var(--white);
+					border: 0;
+					font-size: 28px;
+					padding: 10px 40px;
+					border-radius: 25px;
+					text-decoration: none;
+				}
+			}
+		}
+		& .controls {
+			display: flex;
+			flex-direction: column;
+			gap: var(--items-gap);
+			& .group {
+				height: 50%;
+			}
+		}
+		.clock {
+			display: grid;
+			place-items: center;
+		}
+		.studies {
+			.items {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.study {
+				h3 {
+					font-size: 18px;
+					margin: 0;
+					& span {
+						font-size: 12px;
+						font-weight: normal;
+					}
+				}
+				p {
+					font-size: 15px;
+					line-height: 28px;
+				}
+			}
+		}
+	}
+	.second-section {
+		margin-top: var(--items-gap);
+		display: grid;
+		grid-template-columns: 3fr 1.365fr;
+		max-width: 1660px;
+		margin-inline: auto;
+		gap: var(--items-gap);
+		& .group {
+			background-color: var(--white);
+			border-radius: var(--section-border);
+			padding: var(--section-padding);
+		}
 
-    .carrousel-control {
-      /* TODO make carrousel of projects ......... */
-      width: 100%;
-      height: 100px;
-      background-color: rgb(196, 177, 177);
-    }
-    .work-case {
-      display: flex;
-      gap: 50px;
-      img {
-        width: 500px;
-        border-radius: 10px;
-      }
-      .text {
-        line-height: 28px;
-      }
-      .title {
-        margin-top: 40px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        height: 32px;
-        h3 {
-          font-size: 25px;
-          margin: 0;
-        }
-        & ul {
-          list-style: none;
-          padding-left: 0;
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          & a {
-            display: grid;
-            place-items: center;
-          }
-        }
-      }
-      .more-details {
-        cursor: pointer;
-        background-color: var(--black);
-        color: var(--white);
-        border: 0;
-        font-size: 18px;
-        border-radius: 20px;
-        width: 175px;
-        height: 40px;
-      }
-    }
-  }
-  .section-title {
-    font-size: 40px;
-    line-height: 40px;
-    margin-block: 0 30px;
-  }
+		.carrousel-control {
+			/* TODO make carrousel of projects ......... */
+			width: 100%;
+			height: 100px;
+			background-color: rgb(196, 177, 177);
+		}
+		.work-case {
+			display: flex;
+			gap: 50px;
+			img {
+				width: 500px;
+				border-radius: 10px;
+			}
+			.text {
+				line-height: 28px;
+			}
+			.title {
+				margin-top: 40px;
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				height: 32px;
+				h3 {
+					font-size: 25px;
+					margin: 0;
+				}
+				& ul {
+					list-style: none;
+					padding-left: 0;
+					display: flex;
+					align-items: center;
+					gap: 15px;
+					& a {
+						display: grid;
+						place-items: center;
+					}
+				}
+			}
+			.more-details {
+				background-color: var(--black);
+				color: var(--white);
+				border: 0;
+				font-size: 18px;
+				border-radius: 20px;
+				width: 175px;
+				height: 40px;
+				padding: 0.5em 2em;
+				text-decoration: none;
+			}
+		}
+	}
+	.section-title {
+		font-size: 40px;
+		line-height: 40px;
+		margin-block: 0 30px;
+	}
+	.group.tech {
+		display: flex;
+		flex-direction: column;
+	}
+	.group.tech .grid {
+		flex-grow: 1;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		place-items: center;
+	}
 </style>
 <Layout title="Welcome to Astro.">
-  <Header />
-  <main>
-    <section class="first-section">
-      <div class="group about">
-        <h1>Hey, I’m Leandro, a frontend dev from Buenos Aires, Argentina.</h1>
-        <p>
-          Whether it’s React.js or Next.js, I weave digital experiences that
-          users will love. Clean code, performance optimization, and
-          accessibility are my daily bread, I expect my apps to be
-          user-friendly. And yes, I’m always exploring new tools and techniques
-          to level up my game!
-        </p>
-        <div class="contact">
-          <button type="button">Contact me</button>
-          <ul>
-            <a href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="49"
-                viewBox="0 0 48 49"
-                fill="none"
-              >
-                <path
-                  d="M43.5095 1.62493H4.50952C3.62464 1.61592 2.77232 1.95832 2.13959 2.57699C1.50686 3.19566 1.1454 4.04007 1.13452 4.92493V44.0824C1.14737 44.966 1.50969 45.8085 2.14221 46.4255C2.77473 47.0426 3.62592 47.3839 4.50952 47.3749H43.5095C44.3945 47.3819 45.2462 47.0384 45.8786 46.4193C46.511 45.8003 46.8727 44.9561 46.8845 44.0712V4.91368C46.8687 4.03141 46.5054 3.19103 45.8734 2.5752C45.2414 1.95937 44.3919 1.61787 43.5095 1.62493ZM14.6983 40.6249H7.90702V18.7737H14.6983V40.6249ZM11.3233 15.7962C10.5443 15.7969 9.7827 15.5666 9.13469 15.1344C8.48668 14.7022 7.98142 14.0875 7.68282 13.3681C7.38423 12.6487 7.30572 11.8569 7.45722 11.0928C7.60873 10.3288 7.98344 9.62682 8.53396 9.07577C9.08448 8.52473 9.78607 8.14935 10.55 7.99711C11.3139 7.84488 12.1058 7.92264 12.8255 8.22055C13.5452 8.51846 14.1603 9.02313 14.5932 9.67073C15.026 10.3183 15.257 11.0798 15.257 11.8587C15.256 12.3764 15.153 12.8888 14.9537 13.3667C14.7545 13.8445 14.4629 14.2783 14.0958 14.6434C13.7287 15.0084 13.2932 15.2975 12.8142 15.494C12.3352 15.6905 11.8222 15.7907 11.3045 15.7887L11.3233 15.7962ZM40.1345 40.6249H33.3433V29.9937C33.3433 27.4624 33.2983 24.2037 29.8145 24.2037C26.3308 24.2037 25.7383 26.9637 25.7383 29.8287V40.6249H18.9583V18.7737H25.4683V21.7737H25.5583C26.4658 20.0562 28.6783 18.2449 31.982 18.2449C38.8595 18.2299 40.1345 22.7562 40.1345 28.6249V40.6249Z"
-                  fill="black"></path>
-              </svg>
-            </a>
-            <a href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="48"
-                height="49"
-                viewBox="0 0 48 49"
-                fill="none"
-              >
-                <g clip-path="url(#clip0_25_4)">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M23.9375 0.5C17.5917 0.500795 11.5059 3.02203 7.01875 7.50923C2.53155 11.9964 0.010317 18.0821 0.00952148 24.428C0.00952148 34.994 6.90952 43.949 16.3025 47.18C17.4785 47.327 17.9165 46.592 17.9165 46.004V41.894C11.3135 43.364 9.84652 38.666 9.84652 38.666C8.81752 35.876 7.20352 35.141 7.20352 35.141C5.00152 33.674 7.34752 33.674 7.34752 33.674C9.69652 33.821 11.0195 36.17 11.0195 36.17C13.2215 39.839 16.5965 38.81 17.9195 38.225C18.0635 36.611 18.7985 35.585 19.3865 34.997C14.1005 34.409 8.52352 32.354 8.52352 23.105C8.52352 20.465 9.40252 18.407 11.0195 16.646C10.8695 16.205 9.99052 13.712 11.3135 10.481C11.3135 10.481 13.3685 9.893 17.9165 12.977C19.8245 12.389 21.8825 12.242 23.9375 12.242C25.9925 12.242 28.0475 12.536 29.9555 12.977C34.5065 9.896 36.5615 10.481 36.5615 10.481C37.8815 13.712 36.9995 16.205 36.8525 16.793C38.4692 18.5542 39.3607 20.8613 39.3485 23.252C39.3485 32.501 33.7685 34.409 28.4885 34.997C29.3675 35.729 30.1025 37.196 30.1025 39.398V46.004C30.1025 46.592 30.5405 47.324 31.7165 47.18C36.4755 45.5758 40.6096 42.5157 43.5336 38.4325C46.4575 34.3494 48.0234 29.4501 48.0095 24.428C47.8625 11.216 37.1495 0.5 23.9375 0.5Z"
-                    fill="black"></path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_25_4">
-                    <rect
-                      width="48"
-                      height="48"
-                      fill="white"
-                      transform="translate(0.00952148 0.5)"></rect>
-                  </clipPath>
-                </defs>
-              </svg>
-            </a>
-            <a href="#">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="60"
-                height="61"
-                viewBox="0 0 60 61"
-                fill="none"
-              >
-                <path
-                  d="M9.76796 48.0836H17.2253V29.9728L6.57202 21.9829V44.8877C6.57202 46.656 8.00499 48.0836 9.76796 48.0836Z"
-                  fill="#4285F4"></path>
-                <path
-                  d="M42.7925 48.0836H50.2501C52.0184 48.0836 53.446 46.6509 53.446 44.8877V21.9829L42.7925 29.9728"
-                  fill="#34A853"></path>
-                <path
-                  d="M42.7925 16.123V29.9724L53.446 21.9826V17.7207C53.446 13.7685 48.9343 11.5152 45.7756 13.8856"
-                  fill="#FBBC04"></path>
-                <path
-                  d="M17.2261 29.973V16.1238L30.0101 25.7118L42.794 16.1235V29.973L30.0101 39.5613"
-                  fill="#EA4335"></path>
-                <path
-                  d="M6.57202 17.7209V21.9821L17.2253 29.9722V16.123L14.2424 13.8856C11.0783 11.5152 6.57202 13.7684 6.57202 17.7209Z"
-                  fill="#C5221F"></path>
-              </svg>
-            </a>
-          </ul>
-        </div>
-      </div>
-      <div class="controls">
-        <div class="group">
-          <div>Toggle Theme <button>Toggle</button></div>
-        </div>
-        <div class="group clock">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="237"
-            height="236"
-            viewBox="0 0 237 236"
-            fill="none"
-          >
-            <path
-              d="M118.5 48.5001V118L164.833 141.167M234.333 118C234.333 181.973 182.473 233.833 118.5 233.833C54.5271 233.833 2.66675 181.973 2.66675 118C2.66675 54.0271 54.5271 2.16675 118.5 2.16675C182.473 2.16675 234.333 54.0271 234.333 118Z"
-              stroke="#1E1E1E"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </div>
-      <div class="group studies">
-        <h2 class="section-title">Studies</h2>
-        <div class="items">
-          <div class="study">
-            <h3>
-              Technical Degree in Programming <span>06/2024 - Present</span>
-            </h3>
-            <p>
-              I am beginning a Technical Degree in Programming at UTN. My
-              studies focus on developing skills to analyze and solve software
-              programming problems, manage time efficiently, and effectively
-              collaborate in development teams.
-            </p>
-          </div>
-          <div class="study">
-            <h3>Full-Stack Web Developer <span>04/2023 - 11/2023</span></h3>
-            <p>
-              I acquired skills mainly in React JS, Angular and Node JS for
-              network operations. I used Firebase for authentication and data
-              storage, as well as Tailwind CSS for styling, among other
-              technologies.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+	<Header />
+	<main>
+		<section class="first-section">
+			<div class="group about">
+				<h1>
+					Hey, I’m Leandro, a frontend dev from Buenos Aires,
+					Argentina.
+				</h1>
+				<p>
+					Whether it’s React.js or Next.js, I weave digital
+					experiences that users will love. Clean code, performance
+					optimization, and accessibility are my daily bread, I expect
+					my apps to be user-friendly. And yes, I’m always exploring
+					new tools and techniques to level up my game!
+				</p>
+				<div class="contact">
+					<a class="contactme" href="mailto:leandrodiaz042@gmail.com"
+						>Contact me</a
+					>
+					<ul>
+						<a href="https://www.linkedin.com/in/leandiaz/">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="48"
+								height="49"
+								viewBox="0 0 48 49"
+								fill="none"
+							>
+								<path
+									d="M43.5095 1.62493H4.50952C3.62464 1.61592 2.77232 1.95832 2.13959 2.57699C1.50686 3.19566 1.1454 4.04007 1.13452 4.92493V44.0824C1.14737 44.966 1.50969 45.8085 2.14221 46.4255C2.77473 47.0426 3.62592 47.3839 4.50952 47.3749H43.5095C44.3945 47.3819 45.2462 47.0384 45.8786 46.4193C46.511 45.8003 46.8727 44.9561 46.8845 44.0712V4.91368C46.8687 4.03141 46.5054 3.19103 45.8734 2.5752C45.2414 1.95937 44.3919 1.61787 43.5095 1.62493ZM14.6983 40.6249H7.90702V18.7737H14.6983V40.6249ZM11.3233 15.7962C10.5443 15.7969 9.7827 15.5666 9.13469 15.1344C8.48668 14.7022 7.98142 14.0875 7.68282 13.3681C7.38423 12.6487 7.30572 11.8569 7.45722 11.0928C7.60873 10.3288 7.98344 9.62682 8.53396 9.07577C9.08448 8.52473 9.78607 8.14935 10.55 7.99711C11.3139 7.84488 12.1058 7.92264 12.8255 8.22055C13.5452 8.51846 14.1603 9.02313 14.5932 9.67073C15.026 10.3183 15.257 11.0798 15.257 11.8587C15.256 12.3764 15.153 12.8888 14.9537 13.3667C14.7545 13.8445 14.4629 14.2783 14.0958 14.6434C13.7287 15.0084 13.2932 15.2975 12.8142 15.494C12.3352 15.6905 11.8222 15.7907 11.3045 15.7887L11.3233 15.7962ZM40.1345 40.6249H33.3433V29.9937C33.3433 27.4624 33.2983 24.2037 29.8145 24.2037C26.3308 24.2037 25.7383 26.9637 25.7383 29.8287V40.6249H18.9583V18.7737H25.4683V21.7737H25.5583C26.4658 20.0562 28.6783 18.2449 31.982 18.2449C38.8595 18.2299 40.1345 22.7562 40.1345 28.6249V40.6249Z"
+									fill="black"></path>
+							</svg>
+						</a>
+						<a href="https://github.com/leandiazz">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="48"
+								height="49"
+								viewBox="0 0 48 49"
+								fill="none"
+							>
+								<g clip-path="url(#clip0_25_4)">
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M23.9375 0.5C17.5917 0.500795 11.5059 3.02203 7.01875 7.50923C2.53155 11.9964 0.010317 18.0821 0.00952148 24.428C0.00952148 34.994 6.90952 43.949 16.3025 47.18C17.4785 47.327 17.9165 46.592 17.9165 46.004V41.894C11.3135 43.364 9.84652 38.666 9.84652 38.666C8.81752 35.876 7.20352 35.141 7.20352 35.141C5.00152 33.674 7.34752 33.674 7.34752 33.674C9.69652 33.821 11.0195 36.17 11.0195 36.17C13.2215 39.839 16.5965 38.81 17.9195 38.225C18.0635 36.611 18.7985 35.585 19.3865 34.997C14.1005 34.409 8.52352 32.354 8.52352 23.105C8.52352 20.465 9.40252 18.407 11.0195 16.646C10.8695 16.205 9.99052 13.712 11.3135 10.481C11.3135 10.481 13.3685 9.893 17.9165 12.977C19.8245 12.389 21.8825 12.242 23.9375 12.242C25.9925 12.242 28.0475 12.536 29.9555 12.977C34.5065 9.896 36.5615 10.481 36.5615 10.481C37.8815 13.712 36.9995 16.205 36.8525 16.793C38.4692 18.5542 39.3607 20.8613 39.3485 23.252C39.3485 32.501 33.7685 34.409 28.4885 34.997C29.3675 35.729 30.1025 37.196 30.1025 39.398V46.004C30.1025 46.592 30.5405 47.324 31.7165 47.18C36.4755 45.5758 40.6096 42.5157 43.5336 38.4325C46.4575 34.3494 48.0234 29.4501 48.0095 24.428C47.8625 11.216 37.1495 0.5 23.9375 0.5Z"
+										fill="black"></path>
+								</g>
+								<defs>
+									<clipPath id="clip0_25_4">
+										<rect
+											width="48"
+											height="48"
+											fill="white"
+											transform="translate(0.00952148 0.5)"
+										></rect>
+									</clipPath>
+								</defs>
+							</svg>
+						</a>
+						<a href="mailto:leandrodiaz042@gmail.com">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="60"
+								height="61"
+								viewBox="0 0 60 61"
+								fill="none"
+							>
+								<path
+									d="M9.76796 48.0836H17.2253V29.9728L6.57202 21.9829V44.8877C6.57202 46.656 8.00499 48.0836 9.76796 48.0836Z"
+									fill="#4285F4"></path>
+								<path
+									d="M42.7925 48.0836H50.2501C52.0184 48.0836 53.446 46.6509 53.446 44.8877V21.9829L42.7925 29.9728"
+									fill="#34A853"></path>
+								<path
+									d="M42.7925 16.123V29.9724L53.446 21.9826V17.7207C53.446 13.7685 48.9343 11.5152 45.7756 13.8856"
+									fill="#FBBC04"></path>
+								<path
+									d="M17.2261 29.973V16.1238L30.0101 25.7118L42.794 16.1235V29.973L30.0101 39.5613"
+									fill="#EA4335"></path>
+								<path
+									d="M6.57202 17.7209V21.9821L17.2253 29.9722V16.123L14.2424 13.8856C11.0783 11.5152 6.57202 13.7684 6.57202 17.7209Z"
+									fill="#C5221F"></path>
+							</svg>
+						</a>
+					</ul>
+				</div>
+			</div>
+			<div class="controls">
+				<div class="group">
+					<!-- <div>Toggle Theme <button>Toggle</button></div> -->
+				</div>
+				<div class="group clock">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="237"
+						height="236"
+						viewBox="0 0 237 236"
+						fill="none"
+					>
+						<path
+							d="M118.5 48.5001V118L164.833 141.167M234.333 118C234.333 181.973 182.473 233.833 118.5 233.833C54.5271 233.833 2.66675 181.973 2.66675 118C2.66675 54.0271 54.5271 2.16675 118.5 2.16675C182.473 2.16675 234.333 54.0271 234.333 118Z"
+							stroke="#1E1E1E"
+							stroke-width="4"
+							stroke-linecap="round"
+							stroke-linejoin="round"></path>
+					</svg>
+				</div>
+			</div>
+			<div class="group studies">
+				<h2 class="section-title">Studies</h2>
+				<div class="items">
+					<div class="study">
+						<h3>
+							Technical Degree in Programming <span
+								>06/2024 - Present</span
+							>
+						</h3>
+						<p>
+							I am beginning a Technical Degree in Programming at
+							UTN. My studies focus on developing skills to
+							analyze and solve software programming problems,
+							manage time efficiently, and effectively collaborate
+							in development teams.
+						</p>
+					</div>
+					<div class="study">
+						<h3>
+							Full-Stack Web Developer <span
+								>04/2023 - 11/2023</span
+							>
+						</h3>
+						<p>
+							I acquired skills mainly in React JS, Angular and
+							Node JS for network operations. I used Firebase for
+							authentication and data storage, as well as Tailwind
+							CSS for styling, among other technologies.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <section class="second-section">
-      <div class="group">
-        <h2 class="section-title">My last work</h2>
-        <div class="work-case">
-          <img
-            src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
-            alt="cruelsummer store"
-          />
-          <div>
-            <div class="title">
-              <h3>Cruelsummer Store</h3>
-              <ul>
-                <a href="#"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
-                    fill="none"
-                  >
-                    <path
-                      d="M18.0006 1V14C18.0006 14.2652 17.8952 14.5196 17.7077 14.7071C17.5201 14.8946 17.2658 15 17.0006 15C16.7353 15 16.481 14.8946 16.2934 14.7071C16.1059 14.5196 16.0006 14.2652 16.0006 14V3.41375L1.70806 17.7075C1.52042 17.8951 1.26592 18.0006 1.00056 18.0006C0.735192 18.0006 0.480697 17.8951 0.293056 17.7075C0.105415 17.5199 0 17.2654 0 17C0 16.7346 0.105415 16.4801 0.293056 16.2925L14.5868 2H4.00056C3.73534 2 3.48099 1.89464 3.29345 1.70711C3.10591 1.51957 3.00056 1.26522 3.00056 1C3.00056 0.734784 3.10591 0.48043 3.29345 0.292893C3.48099 0.105357 3.73534 0 4.00056 0H17.0006C17.2658 0 17.5201 0.105357 17.7077 0.292893C17.8952 0.48043 18.0006 0.734784 18.0006 1Z"
-                      fill="black"></path>
-                  </svg></a
-                >
-                <a href="#">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="22"
-                    height="22"
-                    viewBox="0 0 22 22"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M10.9675 0C8.05896 0.000374747 5.26967 1.18813 3.21304 3.30206C1.15642 5.41599 0.000852871 8.28298 0.000488281 11.2725C0.000488281 16.2502 3.16298 20.4689 7.4681 21.991C8.0071 22.0603 8.20785 21.714 8.20785 21.437V19.5008C5.18148 20.1933 4.5091 17.9801 4.5091 17.9801C4.03748 16.6657 3.29773 16.3194 3.29773 16.3194C2.28848 15.6283 3.36373 15.6283 3.36373 15.6283C4.44035 15.6976 5.04673 16.8042 5.04673 16.8042C6.05598 18.5327 7.60285 18.0479 8.20922 17.7723C8.27522 17.012 8.6121 16.5286 8.8816 16.2516C6.45885 15.9746 3.90273 15.0065 3.90273 10.6493C3.90273 9.40555 4.30561 8.43602 5.04673 7.60641C4.97798 7.39866 4.5751 6.2242 5.18148 4.70207C5.18148 4.70207 6.12335 4.42506 8.20785 5.87794C9.08235 5.60093 10.0256 5.53168 10.9675 5.53168C11.9093 5.53168 12.8512 5.67018 13.7257 5.87794C15.8116 4.42647 16.7535 4.70207 16.7535 4.70207C17.3585 6.2242 16.9542 7.39866 16.8868 7.67566C17.6278 8.50539 18.0364 9.59224 18.0308 10.7185C18.0308 15.0757 15.4733 15.9746 13.0533 16.2516C13.4562 16.5965 13.7931 17.2876 13.7931 18.3249V21.437C13.7931 21.714 13.9938 22.0589 14.5328 21.991C16.7141 21.2353 18.6088 19.7937 19.949 17.8701C21.2891 15.9465 22.0068 13.6384 22.0004 11.2725C21.9331 5.04833 17.023 0 10.9675 0Z"
-                      fill="black"></path>
-                  </svg></a
-                >
-              </ul>
-            </div>
-            <p class="text">
-              This project involved designing and developing a full-fledged
-              e-commerce platform from scratch all by myself using Next.js.
-            </p>
-            <p class="text">
-              Key functionalities include product management with Google Sheets
-              as database, data validation with TypeScript and Zod, a persistent
-              shopping cart using Zustand, and responsive design with Tailwind
-              CSS and Shadcn.
-            </p>
-            <button type="button" class="more-details">More details</button>
-          </div>
-        </div>
-        <!-- <div class="carrousel-control">
+		<section class="second-section">
+			<div class="group">
+				<h2 class="section-title">My last work</h2>
+				<div class="work-case">
+					<img
+						src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
+						alt="cruelsummer store"
+					/>
+					<div>
+						<div class="title">
+							<h3>Cruelsummer Store</h3>
+							<ul>
+								<a href="https://cruelsummer.vercel.app"
+									><svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="18"
+										height="18"
+										viewBox="0 0 18 18"
+										fill="none"
+									>
+										<path
+											d="M18.0006 1V14C18.0006 14.2652 17.8952 14.5196 17.7077 14.7071C17.5201 14.8946 17.2658 15 17.0006 15C16.7353 15 16.481 14.8946 16.2934 14.7071C16.1059 14.5196 16.0006 14.2652 16.0006 14V3.41375L1.70806 17.7075C1.52042 17.8951 1.26592 18.0006 1.00056 18.0006C0.735192 18.0006 0.480697 17.8951 0.293056 17.7075C0.105415 17.5199 0 17.2654 0 17C0 16.7346 0.105415 16.4801 0.293056 16.2925L14.5868 2H4.00056C3.73534 2 3.48099 1.89464 3.29345 1.70711C3.10591 1.51957 3.00056 1.26522 3.00056 1C3.00056 0.734784 3.10591 0.48043 3.29345 0.292893C3.48099 0.105357 3.73534 0 4.00056 0H17.0006C17.2658 0 17.5201 0.105357 17.7077 0.292893C17.8952 0.48043 18.0006 0.734784 18.0006 1Z"
+											fill="black"></path>
+									</svg></a
+								>
+								<a href="https://github.com/leandiazz/store">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="22"
+										viewBox="0 0 22 22"
+										fill="none"
+									>
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M10.9675 0C8.05896 0.000374747 5.26967 1.18813 3.21304 3.30206C1.15642 5.41599 0.000852871 8.28298 0.000488281 11.2725C0.000488281 16.2502 3.16298 20.4689 7.4681 21.991C8.0071 22.0603 8.20785 21.714 8.20785 21.437V19.5008C5.18148 20.1933 4.5091 17.9801 4.5091 17.9801C4.03748 16.6657 3.29773 16.3194 3.29773 16.3194C2.28848 15.6283 3.36373 15.6283 3.36373 15.6283C4.44035 15.6976 5.04673 16.8042 5.04673 16.8042C6.05598 18.5327 7.60285 18.0479 8.20922 17.7723C8.27522 17.012 8.6121 16.5286 8.8816 16.2516C6.45885 15.9746 3.90273 15.0065 3.90273 10.6493C3.90273 9.40555 4.30561 8.43602 5.04673 7.60641C4.97798 7.39866 4.5751 6.2242 5.18148 4.70207C5.18148 4.70207 6.12335 4.42506 8.20785 5.87794C9.08235 5.60093 10.0256 5.53168 10.9675 5.53168C11.9093 5.53168 12.8512 5.67018 13.7257 5.87794C15.8116 4.42647 16.7535 4.70207 16.7535 4.70207C17.3585 6.2242 16.9542 7.39866 16.8868 7.67566C17.6278 8.50539 18.0364 9.59224 18.0308 10.7185C18.0308 15.0757 15.4733 15.9746 13.0533 16.2516C13.4562 16.5965 13.7931 17.2876 13.7931 18.3249V21.437C13.7931 21.714 13.9938 22.0589 14.5328 21.991C16.7141 21.2353 18.6088 19.7937 19.949 17.8701C21.2891 15.9465 22.0068 13.6384 22.0004 11.2725C21.9331 5.04833 17.023 0 10.9675 0Z"
+											fill="black"></path>
+									</svg></a
+								>
+							</ul>
+						</div>
+						<p class="text">
+							This project involved designing and developing a
+							full-fledged e-commerce platform from scratch all by
+							myself using Next.js.
+						</p>
+						<p class="text">
+							Key functionalities include product management with
+							Google Sheets as database, data validation with
+							TypeScript and Zod, a persistent shopping cart using
+							Zustand, and responsive design with Tailwind CSS and
+							Shadcn.
+						</p>
+						<a href="/cruelsummer" class="more-details"
+							>More details</a
+						>
+					</div>
+				</div>
+				<!-- <div class="carrousel-control">
           TODO make carrousel of projects .........
         </div> -->
-      </div>
-      <div class="group">
-        <h2 class="section-title">Tech i use</h2>
-        grid with technologies...
-      </div>
-    </section>
-  </main>
+			</div>
+			<div class="group tech">
+				<h2 class="section-title">Tech i use</h2>
+				<div class="grid">
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_42)">
+							<path
+								d="M10.0049 12.35L13.7957 52.8135L30.8061 57.1704L47.8639 52.8959L51.6589 12.35H10.0049ZM43.7741 21.5619L43.5364 24.1872L43.4319 25.4H23.4777L23.9544 30.8H42.9575L42.8305 31.8039L41.6047 44.813L41.5147 45.5735L30.8319 48.3338V48.3315L30.8193 48.3369L20.1425 45.6747L19.4179 38H24.6529L25.0236 41.807L30.8291 43.2195L30.8319 43.1142V43.1196L36.65 41.9276L37.2575 35.75H19.1849L17.9033 21.8738L17.7782 20.45H43.8988L43.7741 21.5619ZM13.9363 0.932129H16.5716V3.43233H18.9829V0.932129H21.6186V8.50203H18.9829V5.96718H16.5721V8.50203H13.9363V0.932129ZM25.0841 3.44268H22.7638V0.932129H30.0411V3.44268H27.7199V8.50203H25.0841V3.44268ZM31.1961 0.932129H33.9439L35.6347 3.59208L37.3236 0.932129H40.0728V8.50203H37.4474V4.74993L35.6347 7.44138H35.5888L33.7747 4.74993V8.50203H31.1957L31.1961 0.932129ZM41.3849 0.932129H44.0211V6.00003H47.7275V8.50248H41.3849V0.932129Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_42">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031 0.199951)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_44)">
+							<path
+								d="M10.0522 11.8999L13.8346 52.6218L30.8062 57.1443L47.8251 52.6159L51.6116 11.8999H10.0522ZM42.4944 34.6195L41.3929 44.4709L41.3971 45.3147L30.8319 48.1474L30.8235 48.1546L20.174 45.3534L19.4535 37.5499H24.6758L25.0462 41.4946L30.8338 42.9774L30.8319 42.9841V42.9697L36.6416 41.397L37.2547 34.8499H25.1108L25.0068 33.7902L24.7696 31.249L24.6454 29.8999H37.7169L38.1922 24.9499H18.283L18.1785 23.7849L17.9413 21.0714L17.8171 19.5499H43.8782L43.753 21.0502L42.4944 34.6195ZM42.5507 6.6682L39.1996 2.8999H42.5507V0.649902H35.0507V2.61325L38.9835 6.0499H35.0507V8.2999H42.5507V6.6682ZM33.6444 6.6682L30.4537 2.8999H33.6444V0.649902H26.6132V2.61325L30.238 6.0499H26.6132V8.2999H33.6444V6.6682ZM25.2069 6.0499H21.4569V2.8999H25.2069V0.649902H18.6444V8.2999H25.2069V6.0499Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_44">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031 0.199951)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_26)">
+							<path
+								d="M1.76953 0.649902V56.8999H60.3633V0.649902H1.76953ZM32.7628 48.5807C31.898 50.2678 30.247 51.3762 28.3341 51.9112C25.3945 52.5592 22.583 52.1898 20.4914 50.9847C19.0917 50.1603 17.9986 48.8913 17.2566 47.4292L21.7191 44.8057C21.758 44.8215 21.8752 45.0249 22.0317 45.2877C22.6008 46.2029 23.0916 46.851 24.0562 47.3059C25.0041 47.6164 27.0848 47.8148 27.8883 46.2137C28.3791 45.3993 28.223 42.7812 28.223 39.8845C28.2225 35.3328 28.2445 30.7999 28.2445 26.2999H33.7331C33.7331 31.2499 33.7613 35.938 33.7331 40.7683C33.7448 43.7293 34.0125 46.369 32.7628 48.5807ZM55.5319 47.0922C53.6241 53.3571 42.9872 53.5604 38.7366 49.4213C37.8384 48.4471 37.2755 47.9382 36.7397 46.8136C38.9986 45.5662 38.9986 45.5662 41.1966 44.3453C42.3905 46.1071 43.4944 47.076 45.4805 47.4724C48.1748 47.7883 50.8856 46.8996 50.2777 44.1523C49.6528 41.9086 44.7605 41.3628 41.4309 38.9634C38.0508 36.784 37.2586 31.4884 40.0364 28.4626C40.9622 27.3435 42.5409 26.5083 44.1975 26.1069L45.9262 25.8922C49.2455 25.8279 51.3202 26.6694 52.8431 28.302C53.2669 28.7142 53.6128 29.1588 54.2597 30.1222C52.4916 31.204 52.4972 31.1937 49.9645 32.7678C49.4236 31.6491 48.5259 30.9471 47.5772 30.642C46.1044 30.2136 44.2472 30.6793 43.8619 32.1733C43.7283 32.6337 43.7559 33.0621 43.9683 33.8226C44.565 35.1289 46.5675 35.6968 48.3638 36.4893C53.5345 38.5026 55.2806 40.6612 55.71 43.2307C56.1234 45.4429 55.6102 46.878 55.5319 47.0922Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_26">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031 0.199951)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_28)">
+							<path
+								d="M1.76953 28.9595V57.0845H60.3633V0.834473H1.76953V28.9595ZM48.9867 26.7095C50.3901 27.0221 51.6656 27.7267 52.6523 28.7345C53.1955 29.2774 53.6677 29.8819 54.0586 30.5345C54.0586 30.6065 51.5273 32.249 49.9852 33.167C49.9289 33.203 49.7039 32.969 49.4555 32.6135C49.1739 32.1471 48.7739 31.7568 48.2928 31.4791C47.8116 31.2013 47.265 31.0451 46.7039 31.025C44.9273 30.908 43.7836 31.8035 43.793 33.275C43.7787 33.6413 43.8661 34.0047 44.0461 34.328C44.4352 35.1065 45.1617 35.57 47.4398 36.515C51.6352 38.2475 53.4305 39.3905 54.5461 41.015C55.793 42.815 56.0695 45.722 55.2258 47.873C54.2883 50.213 51.9914 51.8015 48.743 52.328C47.2593 52.4912 45.7602 52.4761 44.2805 52.283C42.0221 51.9313 39.9388 50.899 38.332 49.3355C37.793 48.764 36.743 47.2745 36.8086 47.1665C36.9794 47.0441 37.1596 46.9342 37.3477 46.838L39.5039 45.65L41.1867 44.714L41.5383 45.2135C42.1318 46.0281 42.8868 46.7223 43.7602 47.2565C45.6352 48.2015 48.1945 48.071 49.4602 46.9775C49.8851 46.5768 50.1502 46.0457 50.2093 45.4767C50.2684 44.9077 50.1177 44.3368 49.7836 43.8635C49.3148 43.238 48.3773 42.7115 45.757 41.6135C42.7336 40.3625 41.4305 39.5885 40.2398 38.3555C39.4968 37.5417 38.9481 36.5817 38.632 35.543C38.3965 34.3561 38.3617 33.1405 38.5289 31.943C39.1523 29.1395 41.3414 27.182 44.5383 26.6015C46.0188 26.4259 47.5184 26.4653 48.9867 26.7185V26.7095ZM35.2336 29.0675V31.3715H27.6258V52.175H22.2305V31.367H14.6039V29.117C14.5833 28.3424 14.6052 27.5673 14.6695 26.795C14.6977 26.759 19.357 26.741 24.982 26.75H35.2055L35.2336 29.0675Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_28">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031 0.199951)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_30)">
+							<path
+								d="M30.832 23.6628C27.8827 23.6628 25.4808 25.9686 25.4808 28.8C25.4808 31.6314 27.8827 33.9372 30.832 33.9372C33.7814 33.9372 36.1833 31.6314 36.1833 28.8C36.1833 25.9686 33.7814 23.6628 30.832 23.6628ZM15.8508 39.0096L14.6695 38.7288C5.87953 36.5904 0.832031 32.9724 0.832031 28.791C0.832031 24.6096 5.88141 20.9916 14.6695 18.8532L15.8508 18.5724L16.1827 19.6974C17.0744 22.644 18.2144 25.5161 19.5914 28.2852L19.8445 28.791L19.5914 29.3058C18.2115 32.0737 17.0714 34.946 16.1827 37.8936L15.8508 39.0096ZM14.1239 21.4776C7.44328 23.2776 3.34266 26.0424 3.34266 28.791C3.34266 31.5396 7.44516 34.2936 14.1239 36.1044C14.9426 33.6072 15.931 31.1641 17.0827 28.791C15.9294 26.4186 14.941 23.9754 14.1239 21.4776ZM45.8133 39.0096L45.4814 37.8846C44.5913 34.9404 43.4512 32.0712 42.0727 29.3058L41.8195 28.791L42.0727 28.2762C43.4526 25.5083 44.5927 22.636 45.4814 19.6884L45.8133 18.5724L46.9945 18.8532C55.7845 20.9916 60.832 24.6096 60.832 28.791C60.832 32.9724 55.7827 36.5904 46.9945 38.7288L45.8133 39.0096ZM44.5814 28.791C45.7369 31.1626 46.7254 33.6058 47.5402 36.1044C54.2302 34.2954 58.3214 31.5396 58.3214 28.791C58.3214 26.0424 54.2189 23.2884 47.5402 21.4776C46.7195 23.9742 45.7312 26.4171 44.5814 28.791ZM14.1033 21.4686L13.7714 20.3436C11.3002 11.9808 12.052 5.98141 15.832 3.88981C19.5427 1.83601 25.4902 4.26421 31.7302 10.4148L32.5795 11.25L31.7302 12.0852C29.5142 14.2985 27.4894 16.6812 25.6758 19.2096L25.3345 19.6686L24.7477 19.7154C21.5573 19.9572 18.3926 20.4466 15.2845 21.1788L14.1033 21.4686ZM18.8489 5.56021C18.1758 5.56021 17.5795 5.69161 17.0808 5.97241C14.6002 7.35121 14.1614 12.132 15.8695 18.5814C18.5347 18.0091 21.2362 17.605 23.9564 17.3718C25.5225 15.2305 27.235 13.1914 29.0827 11.268C25.1864 7.62121 21.4945 5.56021 18.8489 5.56021ZM42.8245 54.4212C42.8152 54.4212 42.8152 54.4212 42.8245 54.4212C39.2602 54.4212 34.6795 51.8526 29.9339 47.1654L29.0845 46.3302L29.9339 45.495C32.1499 43.2817 34.1747 40.899 35.9883 38.3706L36.3202 37.9116L36.907 37.8558C40.1015 37.6222 43.27 37.1327 46.3795 36.3924L47.5608 36.1116L47.8927 37.2366C50.3639 45.5994 49.612 51.5898 45.832 53.6796C44.9181 54.1839 43.8784 54.4414 42.8245 54.4212ZM32.5795 46.3122C36.4758 49.959 40.1677 52.0218 42.8133 52.0218H42.8227C43.4864 52.0218 44.0827 51.8814 44.5814 51.6096C47.062 50.2308 47.512 45.45 45.7927 39.0006C43.1279 39.5735 40.4263 39.9746 37.7058 40.2012C36.1398 42.3454 34.4272 44.3857 32.5795 46.3122ZM47.5608 21.4686L46.3795 21.1788C43.2678 20.449 40.1002 19.9596 36.907 19.7154L36.3202 19.6686L35.9883 19.2096C34.1747 16.6812 32.1499 14.2985 29.9339 12.0852L29.0845 11.25L29.9339 10.4148C36.1739 4.26421 42.1214 1.83601 45.832 3.88981C49.612 5.97961 50.3639 11.9808 47.8927 20.3436L47.5608 21.4686ZM37.7077 17.3718C40.428 17.6044 43.1294 18.0084 45.7945 18.5814C47.5139 12.132 47.0639 7.34941 44.5833 5.97241C42.112 4.60441 37.4639 6.70321 32.5814 11.2698C34.424 13.1974 36.1363 15.2361 37.7077 17.3736V17.3718ZM18.8489 54.4212C17.7933 54.4392 16.7489 54.1872 15.832 53.6814C12.052 51.5916 11.3002 45.5994 13.7714 37.2384L14.1033 36.1134L15.2845 36.3942C18.1758 37.098 21.3595 37.584 24.7477 37.8576L25.3345 37.9134L25.6664 38.3724C27.48 40.9008 29.5048 43.2835 31.7208 45.4968L32.5702 46.332L31.7208 47.1672C26.9845 51.8544 22.4039 54.423 18.8489 54.423V54.4212ZM15.8714 39.0006C14.152 45.45 14.602 50.2326 17.0827 51.6096C19.5539 52.9596 24.1927 50.8788 29.0845 46.3122C27.2368 44.3857 25.5243 42.3436 23.9583 40.1994C21.2377 39.9735 18.536 39.5742 15.8714 39.0006ZM30.832 40.509C28.7714 40.509 26.662 40.4244 24.5433 40.2552L23.9564 40.2084L23.6152 39.7404C22.4184 38.0896 21.2943 36.3913 20.2458 34.65C19.1951 32.9086 18.2211 31.1257 17.3264 29.3058L17.0733 28.791L17.3264 28.2762C19.119 24.6373 21.2224 21.1472 23.6152 17.8416L23.9564 17.3736L24.5433 17.3268C28.7284 16.9884 32.9357 16.9884 37.1208 17.3268L37.7077 17.3736L38.0489 17.8416C40.4448 21.1453 42.5483 24.6357 44.3377 28.2762L44.5908 28.791L44.3377 29.3058C42.5519 32.9482 40.4482 36.4388 38.0489 39.7404L37.7077 40.2084L37.1208 40.2552C35.0291 40.4233 32.931 40.5079 30.832 40.509ZM25.3439 37.9026C29.0358 38.1744 32.6283 38.1744 36.3295 37.9026C38.3937 35.0008 40.2283 31.9545 41.8177 28.7892C40.235 25.6187 38.3969 22.5717 36.3202 19.6758C32.6669 19.404 28.9972 19.404 25.3439 19.6758C23.2657 22.5708 21.4275 25.6179 19.8464 28.7892C21.4363 31.9561 23.274 35.0026 25.3439 37.9026Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_30">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031)"></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_32)">
+							<mask
+								id="mask0_25_32"
+								style="mask-type:luminance"
+								maskUnits="userSpaceOnUse"
+								x="0"
+								y="0"
+								width="61"
+								height="58"
+							>
+								<path
+									d="M30.832 57.6C47.4006 57.6 60.832 44.7058 60.832 28.8C60.832 12.8942 47.4006 0 30.832 0C14.2635 0 0.832031 12.8942 0.832031 28.8C0.832031 44.7058 14.2635 57.6 30.832 57.6Z"
+									fill="white"></path>
+							</mask>
+							<g mask="url(#mask0_25_32)">
+								<path
+									d="M30.832 57.6C47.4006 57.6 60.832 44.7058 60.832 28.8C60.832 12.8942 47.4006 0 30.832 0C14.2635 0 0.832031 12.8942 0.832031 28.8C0.832031 44.7058 14.2635 57.6 30.832 57.6Z"
+									fill="black"></path>
+								<path
+									d="M50.6681 50.4063L23.8793 17.28H18.832V40.3104H22.8698V22.203L47.4984 52.7504C48.6082 52.0376 49.6671 51.2545 50.6681 50.4063Z"
+									fill="url(#paint0_linear_25_32)"></path>
+								<path
+									d="M39.1655 17.28H43.1656V40.32H39.1655V17.28Z"
+									fill="url(#paint1_linear_25_32)"></path>
+							</g>
+						</g>
+						<defs>
+							<linearGradient
+								id="paint0_linear_25_32"
+								x1="1789.97"
+								y1="2017.28"
+								x2="2801.01"
+								y2="3322.63"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stop-color="white"></stop>
+								<stop
+									offset="1"
+									stop-color="white"
+									stop-opacity="0"></stop>
+							</linearGradient>
+							<linearGradient
+								id="paint1_linear_25_32"
+								x1="239.169"
+								y1="17.28"
+								x2="232.932"
+								y2="1709.27"
+								gradientUnits="userSpaceOnUse"
+							>
+								<stop stop-color="white"></stop>
+								<stop
+									offset="1"
+									stop-color="white"
+									stop-opacity="0"></stop>
+							</linearGradient>
+							<clipPath id="clip0_25_32">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031)"></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="58"
+						viewBox="0 0 61 58"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_46)">
+							<path
+								d="M30.834 11.5209C22.8338 11.5209 17.8355 15.3594 15.834 23.0395C18.833 19.2006 22.3341 17.761 26.333 18.7209C28.6163 19.2672 30.248 20.8566 32.0551 22.6179C34.996 25.483 38.4001 28.8 45.834 28.8C53.8337 28.8 58.8324 24.961 60.834 17.2791C57.834 21.12 54.3341 22.5603 50.3345 21.6C48.0516 21.0532 46.4218 19.4643 44.6124 17.703C41.6734 14.8378 38.2702 11.5209 30.834 11.5209ZM15.834 28.8C7.8343 28.8 2.83555 32.6389 0.833984 40.3209C3.83367 36.48 7.33336 35.0397 11.333 36C13.6163 36.5467 15.248 38.1357 17.0551 39.897C19.996 42.7621 23.4001 46.0791 30.834 46.0791C38.8337 46.0791 43.8324 42.2406 45.834 34.5604C42.834 38.3995 39.3341 39.8391 35.3345 38.8791C33.0516 38.3328 31.4218 36.7434 29.6124 34.9821C26.6734 32.1169 23.2702 28.8 15.834 28.8Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_46">
+								<rect
+									width="60"
+									height="57.6"
+									fill="white"
+									transform="translate(0.832031)"></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="61"
+						viewBox="0 0 61 61"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_27_17)">
+							<path
+								d="M59.6992 28.1263L33.5017 1.93251C33.143 1.57364 32.7171 1.28896 32.2483 1.09474C31.7796 0.900507 31.2772 0.800537 30.7698 0.800537C30.2624 0.800537 29.76 0.900507 29.2912 1.09474C28.8225 1.28896 28.3966 1.57364 28.0379 1.93251L22.6004 7.37001L29.5004 14.27C30.3142 13.9922 31.1897 13.9487 32.027 14.1446C32.8642 14.3404 33.6296 14.7678 34.2357 15.3777C34.8417 15.9877 35.2641 16.7558 35.4546 17.5943C35.6451 18.4329 35.596 19.3081 35.3129 20.12L41.9617 26.7725C42.9453 26.4262 44.0176 26.4251 45.002 26.7695C45.9863 27.114 46.824 27.7833 47.3772 28.6674C47.9303 29.5515 48.1659 30.5976 48.0452 31.6334C47.9245 32.6693 47.4546 33.6331 46.7129 34.3663C45.9621 35.1217 44.9723 35.593 43.9126 35.6997C42.8529 35.8064 41.789 35.5418 40.9027 34.9512C40.0164 34.3607 39.3626 33.4807 39.053 32.4616C38.7435 31.4425 38.7973 30.3476 39.2054 29.3638L33.0067 23.1613V39.485C33.9489 39.9514 34.7028 40.7267 35.1427 41.6815C35.5827 42.6364 35.682 43.7132 35.4243 44.7324C35.1666 45.7517 34.5673 46.6518 33.7264 47.2828C32.8855 47.9137 31.8537 48.2374 30.803 48.1999C29.7523 48.1624 28.7463 47.7659 27.9525 47.0766C27.1587 46.3872 26.6252 45.4466 26.4408 44.4116C26.2565 43.3765 26.4324 42.3096 26.9394 41.3885C27.4463 40.4675 28.2536 39.748 29.2267 39.35V22.8763C28.6652 22.6462 28.1549 22.3073 27.7251 21.8791C27.2953 21.4509 26.9544 20.9419 26.7223 20.3813C26.4901 19.8208 26.3712 19.2198 26.3724 18.6131C26.3736 18.0064 26.4948 17.4059 26.7292 16.8463L19.9304 10.0438L1.96791 28.0063C1.60904 28.365 1.32436 28.7908 1.13014 29.2596C0.935907 29.7283 0.835938 30.2308 0.835938 30.7381C0.835938 31.2455 0.935907 31.748 1.13014 32.2167C1.32436 32.6854 1.60904 33.1113 1.96791 33.47L28.1654 59.6675C28.5241 60.0264 28.95 60.3111 29.4187 60.5053C29.8875 60.6995 30.3899 60.7995 30.8973 60.7995C31.4047 60.7995 31.9071 60.6995 32.3758 60.5053C32.8446 60.3111 33.2705 60.0264 33.6292 59.6675L59.7029 33.5938C60.0618 33.2351 60.3465 32.8092 60.5407 32.3404C60.7349 31.8717 60.8349 31.3693 60.8349 30.8619C60.8349 30.3545 60.7349 29.8521 60.5407 29.3833C60.3465 28.9146 60.0618 28.4887 59.7029 28.13"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_27_17">
+								<rect
+									width="60"
+									height="60"
+									fill="white"
+									transform="translate(0.832031 0.800049)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="61"
+						viewBox="0 0 61 61"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_17)">
+							<mask
+								id="mask0_25_17"
+								style="mask-type:luminance"
+								maskUnits="userSpaceOnUse"
+								x="0"
+								y="0"
+								width="61"
+								height="61"
+							>
+								<path
+									d="M0.832031 0.800049H60.832V60.8H0.832031V0.800049Z"
+									fill="white"></path>
+							</mask>
+							<g mask="url(#mask0_25_17)">
+								<path
+									d="M1.40222 21.7251C1.40222 21.7251 -0.0577782 20.6576 1.69472 19.2376L5.78222 15.5426C5.78222 15.5426 6.94972 14.3001 8.18722 15.3826L45.8897 44.2376V58.0726C45.8897 58.0726 45.8722 60.2476 43.1147 60.0076L1.40222 21.7251Z"
+									fill="black"></path>
+								<path
+									d="M11.122 30.6425L1.40196 39.5725C1.40196 39.5725 0.401964 40.3225 1.40196 41.665L5.91446 45.815C5.91446 45.815 6.98696 46.9775 8.56947 45.6525L18.872 37.7575L11.122 30.6425ZM28.182 30.715L46.007 16.96L45.8895 3.1975C45.8895 3.1975 45.127 0.192503 42.5895 1.7575L18.872 23.575L28.182 30.715Z"
+									fill="black"></path>
+								<path
+									d="M43.1119 60.0251C44.1469 61.0951 45.4019 60.7451 45.4019 60.7451L59.2919 53.8276C61.0694 52.6026 60.8194 51.0826 60.8194 51.0826V9.77005C60.8194 7.95505 58.9819 7.32755 58.9819 7.32755L46.9419 1.46005C44.3119 -0.182452 42.5894 1.75755 42.5894 1.75755C42.5894 1.75755 44.8044 0.145048 45.8894 3.19755V57.8226C45.8894 58.1976 45.8094 58.5651 45.6519 58.8976C45.3344 59.5451 44.6469 60.1476 42.9969 59.8976L43.1119 60.0251Z"
+									fill="black"></path>
+							</g>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_17">
+								<rect
+									width="60"
+									height="60"
+									fill="white"
+									transform="translate(0.832031 0.800049)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="61"
+						viewBox="0 0 61 61"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M52.0381 14.1501L34.2743 3.61257C33.2406 3.00231 32.0622 2.68042 30.8618 2.68042C29.6615 2.68042 28.483 3.00231 27.4493 3.61257L9.69309 14.1501C8.63722 14.7806 7.76358 15.675 7.15804 16.7454C6.5525 17.8157 6.23589 19.0253 6.23934 20.2551V41.3451C6.23344 42.5713 6.54581 43.7782 7.14592 44.8476C7.74603 45.917 8.61334 46.8124 9.66309 47.4463L27.4231 57.9913C28.4568 58.6016 29.6352 58.9235 30.8356 58.9235C32.036 58.9235 33.2144 58.6016 34.2481 57.9913L52.0081 47.4463C53.0578 46.8124 53.9251 45.917 54.5253 44.8476C55.1254 43.7782 55.4377 42.5713 55.4318 41.3451V20.2551C55.4412 19.032 55.134 17.8273 54.54 16.7582C53.9459 15.6891 53.0853 14.7919 52.0418 14.1538L52.0381 14.1501ZM38.2793 47.0788V48.5938C38.2775 48.687 38.2526 48.7783 38.2068 48.8594C38.161 48.9406 38.0957 49.0091 38.0168 49.0588L37.1206 49.5726C36.9781 49.6476 36.8581 49.5726 36.8581 49.3738V47.8888C36.2232 48.1999 35.4972 48.2705 34.8143 48.0876C34.7586 48.0539 34.7174 48.0007 34.6987 47.9383C34.68 47.876 34.6851 47.8089 34.7131 47.7501L35.0356 46.3813C35.053 46.3063 35.0855 46.2356 35.1313 46.1737C35.1771 46.1118 35.2352 46.0599 35.3018 46.0213C35.3475 46.0026 35.3987 46.0026 35.4443 46.0213C36.0725 46.1906 36.742 46.1057 37.3081 45.7851C37.7098 45.589 38.0509 45.2878 38.2952 44.9134C38.5395 44.539 38.6779 44.1055 38.6956 43.6588C38.6956 42.8863 38.2756 42.5638 37.2556 42.5601C35.9656 42.5601 34.7768 42.3126 34.7431 40.4076C34.7582 39.5938 34.9533 38.7934 35.3145 38.064C35.6756 37.3346 36.1938 36.6942 36.8318 36.1888V34.6626C36.8324 34.5681 36.8567 34.4753 36.9026 34.3927C36.9485 34.3101 37.0144 34.2404 37.0943 34.1901L37.9606 33.6388C38.1031 33.5638 38.2231 33.6388 38.2231 33.8413V35.3751C38.7542 35.1315 39.3479 35.0594 39.9218 35.1688C39.9822 35.2029 40.0274 35.2586 40.0483 35.3248C40.0692 35.3909 40.0642 35.4625 40.0343 35.5251L39.7306 36.8826C39.6922 37.0205 39.6058 37.1403 39.4868 37.2201C39.4441 37.2331 39.3984 37.2331 39.3556 37.2201C38.7961 37.0988 38.2114 37.1953 37.7206 37.4901C37.3624 37.6453 37.0557 37.8989 36.836 38.2215C36.6162 38.5441 36.4926 38.9225 36.4793 39.3126C36.4793 40.0063 36.8468 40.2201 38.0731 40.2426C39.7156 40.2426 40.4243 40.9888 40.4431 42.6388C40.4265 43.4918 40.2248 44.331 39.8518 45.0982C39.4788 45.8655 38.9436 46.5426 38.2831 47.0826L38.2793 47.0788ZM47.5831 44.5288C47.5924 44.5931 47.5848 44.6587 47.5612 44.7191C47.5375 44.7796 47.4985 44.8329 47.4481 44.8738L42.9556 47.6001C42.935 47.6176 42.9094 47.6281 42.8824 47.6302C42.8555 47.6322 42.8286 47.6256 42.8056 47.6113C42.7842 47.5956 42.7674 47.5744 42.7568 47.55C42.7463 47.5257 42.7424 47.4989 42.7456 47.4726V46.3101C42.7504 46.2482 42.7723 46.1888 42.8086 46.1386C42.845 46.0883 42.8946 46.049 42.9518 46.0251L47.3731 43.3776C47.3943 43.3606 47.4203 43.3506 47.4474 43.3491C47.4746 43.3475 47.5015 43.3544 47.5246 43.3688C47.5476 43.3832 47.5656 43.4044 47.5761 43.4295C47.5866 43.4546 47.589 43.4823 47.5831 43.5088V44.5288ZM50.6843 18.6013L33.8768 28.9813C31.7806 30.2226 30.2393 31.5801 30.2393 34.1076V54.8076C30.2393 56.3226 30.8581 57.2901 31.7881 57.5863C31.4812 57.6433 31.1702 57.6747 30.8581 57.6801C29.8681 57.6801 28.9006 57.4101 28.0531 56.9038L10.2893 46.3626C9.42807 45.8393 8.71658 45.1024 8.22382 44.2234C7.73107 43.3443 7.47376 42.3528 7.47684 41.3451V20.2551C7.47247 19.246 7.72916 18.253 8.22197 17.3725C8.71479 16.492 9.42698 15.754 10.2893 15.2301L28.0568 4.69256C28.9019 4.19159 29.8663 3.92724 30.8487 3.92724C31.8312 3.92724 32.7955 4.19159 33.6406 4.69256L51.4006 15.2376C52.1235 15.6753 52.7423 16.2655 53.2138 16.9669C53.6853 17.6683 53.9982 18.4641 54.1306 19.2988C53.5531 18.0463 52.2256 17.6976 50.6806 18.6051H50.6881L50.6843 18.6013Z"
+							fill="black"></path>
+					</svg>
+					<svg
+						width="61"
+						height="61"
+						viewBox="0 0 61 61"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_25_40)">
+							<path
+								d="M55.3493 46.5126L34.7144 2.69258C34.4591 2.15173 34.0616 1.69042 33.5645 1.35797C33.0673 1.02551 32.4892 0.834404 31.8919 0.805081C31.2942 0.76531 30.6972 0.890183 30.1656 1.16611C29.634 1.44204 29.1883 1.85847 28.8769 2.37008L6.49685 38.6201C6.15834 39.1679 5.98238 39.8007 5.98946 40.4446C5.99654 41.0886 6.18637 41.7173 6.53685 42.2576L17.4768 59.2026C17.8915 59.8373 18.4997 60.3214 19.2113 60.583C19.9228 60.8447 20.6998 60.8699 21.4268 60.6551L53.1844 51.2626C54.1569 50.9751 54.9519 50.2876 55.3669 49.3751C55.7819 48.4626 55.7769 47.4176 55.3493 46.5126ZM50.7294 48.3926L23.7818 56.3601C23.5951 56.4169 23.3969 56.4244 23.2064 56.3818C23.0159 56.3392 22.8398 56.248 22.695 56.1171C22.5502 55.9862 22.4419 55.82 22.3804 55.6348C22.319 55.4496 22.3065 55.2516 22.3443 55.0601L31.9694 8.96508C32.1494 8.10258 33.3419 7.96508 33.7169 8.76508L51.5394 46.6101C51.6181 46.7788 51.6594 46.9627 51.6602 47.1489C51.6611 47.3351 51.6215 47.5193 51.5443 47.6887C51.467 47.8582 51.3539 48.0089 51.2128 48.1304C51.0717 48.2519 50.9084 48.3414 50.7294 48.3926Z"
+								fill="black"></path>
+						</g>
+						<defs>
+							<clipPath id="clip0_25_40">
+								<rect
+									width="60"
+									height="60"
+									fill="white"
+									transform="translate(0.832031 0.800049)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+					<svg
+						width="61"
+						height="61"
+						viewBox="0 0 61 61"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g clip-path="url(#clip0_27_2)">
+							<mask
+								id="mask0_27_2"
+								style="mask-type:luminance"
+								maskUnits="userSpaceOnUse"
+								x="7"
+								y="7"
+								width="48"
+								height="48"
+							>
+								<path
+									d="M54.2895 7.28979H7.26904V54.3102H54.2895V7.28979Z"
+									fill="white"></path>
+							</mask>
+							<g mask="url(#mask0_27_2)">
+								<path
+									d="M8.01334 7.28984C7.93442 7.29109 7.85681 7.31011 7.78625 7.34549C7.7157 7.38088 7.65404 7.43171 7.60584 7.49421C7.55765 7.55672 7.52416 7.62928 7.50788 7.70651C7.49159 7.78374 7.49293 7.86365 7.51179 7.94029L13.1817 30.8941C13.1862 30.9206 13.1927 30.9469 13.2013 30.9725L18.8633 53.9106C18.8855 54.0003 18.9308 54.0826 18.995 54.1491C19.0591 54.2157 19.1397 54.2641 19.2285 54.2896C19.3174 54.3151 19.4114 54.3166 19.501 54.2941C19.5907 54.2716 19.6728 54.2257 19.7391 54.1614L53.9014 21.298C53.9675 21.234 54.0156 21.1537 54.0409 21.0653C54.0662 20.9768 54.0679 20.8833 54.0457 20.7939C54.0234 20.7047 53.9781 20.6228 53.9143 20.5566C53.8504 20.4902 53.7703 20.442 53.6819 20.4164L42.35 17.1504C42.2764 17.1084 42.1937 17.0849 42.109 17.0818L19.7685 10.6498C19.6837 10.5975 19.5859 10.5703 19.4863 10.5715L8.16223 7.30943C8.1138 7.2958 8.06366 7.2892 8.01334 7.28984ZM8.74607 8.57114L18.4558 11.3649L11.1676 18.3867L8.74607 8.57114ZM20.2191 11.8743L29.7485 14.6172L22.5975 21.5037L20.2191 11.8743ZM19.1964 12.1094L21.5807 21.7604L12.0257 19.0175L19.1964 12.1094ZM31.5001 15.1227L41.057 17.8734L33.8824 24.7893L31.5001 15.1227ZM30.4813 15.3773L32.848 24.9774L23.3401 22.2502L30.4813 15.3773ZM42.8241 18.3828L52.5162 21.1726L45.2379 28.1748L42.8241 18.3828ZM41.7975 18.6179L44.1779 28.2688L34.625 25.5299L41.7975 18.6179ZM11.5634 19.9814L21.2888 22.7713L13.9888 29.797L11.5634 19.9814ZM23.0344 23.2572L32.5894 26.0001L25.4188 32.9101L23.0344 23.2572ZM22.0196 23.5256L24.4411 33.3548L14.7177 30.5493L22.0196 23.5256ZM34.3115 26.533L44.0388 29.3248L36.7311 36.3504L34.3115 26.533ZM33.2927 26.7818L35.7123 36.6012L25.9987 33.7996L33.2927 26.7818ZM14.4257 31.5583L23.9729 34.3129L16.8101 41.2151L14.4257 31.5583ZM25.8948 34.8634L35.4223 37.6121L28.2752 44.4889L25.8948 34.8634ZM24.8369 34.9418L27.2153 44.5947L17.6643 41.8518L24.8369 34.9418ZM17.2039 42.8177L27.0723 45.6428L19.6627 52.7703L17.2039 42.8177Z"
+									fill="black"></path>
+							</g>
+						</g>
+						<defs>
+							<clipPath id="clip0_27_2">
+								<rect
+									width="48"
+									height="47.0204"
+									fill="white"
+									transform="translate(6.83203 7.28979)"
+								></rect>
+							</clipPath>
+						</defs>
+					</svg>
+				</div>
+			</div>
+		</section>
+	</main>
 </Layout>
 <Footer />

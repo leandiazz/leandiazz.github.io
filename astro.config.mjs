@@ -1,5 +1,5 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: 'https://leandiaz.dev.ar',
-})
+  site: "https://leandiaz.dev.ar",
+});
