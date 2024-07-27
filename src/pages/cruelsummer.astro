@@ -1,0 +1,247 @@
+---
+import NextLogo from "../assets/NextLogo.astro";
+import NextWordmark from "../assets/NextWordmark.astro";
+import SheetsLogo from "../assets/SheetsLogo.astro";
+import TypescriptLogo from "../assets/TypescriptLogo.astro";
+import ZodLogo from "../assets/ZodLogo.astro";
+import ZustandLogo from "../assets/ZustandLogo.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<style>
+	.lessons,
+	.conclusion {
+		align-self: center;
+		& > h2 {
+			text-align: center;
+		}
+	}
+	main {
+		max-width: 1660px;
+		margin-inline: auto;
+		/* --content-max-width: 1300px; */
+		margin-top: 5rem;
+		/* background-color:; */
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 500;
+	}
+	h2 {
+		font-weight: 600;
+		font-size: 1.875rem;
+		line-height: 2.25rem;
+	}
+	.text {
+		color: #404040;
+		font-size: 1.2rem;
+		max-width: 65ch;
+		line-height: 1.75rem;
+	}
+	.feature {
+		font-weight: bold;
+	}
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+		margin-block: 5rem;
+	}
+	.project-image {
+		max-width: 700px;
+		align-self: center;
+		& .cruelsummer-image {
+			width: 100%;
+		}
+	}
+	.features-section {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		& > div {
+			flex: 1 1 0%;
+		}
+	}
+	.logoslist {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		& .item {
+			display: flex;
+			width: 240px;
+			align-items: center;
+			gap: 1.25rem;
+			height: fit-content;
+			& > p {
+				font-size: 1.25rem;
+			}
+		}
+	}
+	@media (width < 1200px) {
+		.features-section {
+			flex-direction: column;
+		}
+		.logoslist {
+			flex-direction: row;
+			&.firstlist {
+				margin-bottom: 2rem;
+			}
+			&.secondlist {
+				margin-top: 2rem;
+			}
+			& .item {
+				flex-direction: column;
+				& > p {
+					text-align: center;
+				}
+			}
+		}
+	}
+</style>
+
+<Layout title="work - cruel summer">
+	<main class="wrapper">
+		<section>
+			{/* Introduction */}
+			<div class="flow">
+				<h1>Cruel Summer Store</h1>
+				<p class="text">
+					Developing a dynamic and user-friendly e-commerce website
+					was an exciting and challenging experience. This project
+					involved designing and developing a full-fledged e-commerce
+					platform from scratch using Next.js.
+				</p>
+				<p class="text">
+					Key functionalities include product management with Google
+					Sheets, data validation with TypeScript and Zod, a
+					persistent shopping cart using Zustand, and responsive
+					design with Tailwind CSS and Shadcn. My role encompassed the
+					entire process, from initial design to development and
+					deployment.
+				</p>
+			</div>
+			{/* Photo */}
+			<div class="project-image">
+				<img
+					src="https://i.ibb.co/BGJ6mJJ/1.png"
+					alt="cruel summer store"
+					class="cruelsummer-image"
+				/>
+			</div>
+			{/* Purpose */}
+			<div class="flow">
+				<h2>purpose and goal</h2>
+				<p class="text">
+					This project holds special significance for me as it was my
+					first major solo project, evolving from a simple design idea
+					into a fully functional e-commerce site. The inspiration
+					came from a friend&apos;s need to showcase her clothing line
+					in a simple and elegant manner. My goal was to create a
+					manageable and attractive platform for her customers,
+					providing an optimized user experience.
+				</p>
+			</div>
+			{/* Features MOST PART DONE */}
+			<div class="features-section">
+				<div class="logoslist firstlist">
+					<div class="item">
+						<NextLogo />
+						<NextWordmark />
+					</div>
+					<div class="item">
+						<ZustandLogo />
+						<p>Zustand</p>
+					</div>
+					<div class="item">
+						<SheetsLogo />
+						<p>Google Sheets</p>
+					</div>
+				</div>
+
+				<div class="flow">
+					<h2>unique features</h2>
+					<p class="text">
+						<span class="feature"
+							>innovative use of google sheets:</span
+						> One standout feature is the use of Google Sheets as a database.
+						This approach allows for simple and effective inventory control
+						and updates. With Next.js server caching, continuous database
+						requests are unnecessary, improving load times and reducing
+						redundant requests.
+					</p>
+					<p class="text">
+						<span class="feature">persistent shopping cart:</span> Implemented
+						with Zustand, the shopping cart ensures state persistence
+						across user sessions, providing a seamless shopping experience.
+						TypeScript and Zod ensure secure and consistent data handling,
+						minimizing errors and facilitating maintenance and scalability.
+					</p>
+				</div>
+			</div>
+			{/* Challenges */}
+			<div class="features-section">
+				<div class="flow">
+					<h2>challenges and solutions</h2>
+					<p class="text">
+						<span class="feature">product filtering:</span> One of the
+						significant challenges was product filtering. Categorizing
+						products from Google Sheets data posed a considerable difficulty.
+						The solution involved using URL search parameters, allowing
+						dynamic and shareable searches. This functionality not only
+						addressed categorization issues but also enhanced user experience
+						by enabling the sharing of specific results.
+					</p>
+					<p class="text">
+						<span class="feature">data typing management:</span> Ensuring
+						correct data typing when storing products in the cart was
+						another major challenge. Utilizing Zod and TypeScript was
+						essential for establishing robust and consistent data typing.
+						This approach ensured application reliability and facilitated
+						future development and maintenance by detecting errors early
+						in the development process.
+					</p>
+				</div>
+
+				<div class="logoslist secondlist">
+					<div class="item">
+						<ZodLogo />
+						<p>Zod</p>
+					</div>
+					<div class="item">
+						<TypescriptLogo />
+						<p>Typescript</p>
+					</div>
+				</div>
+			</div>
+			{/* Lessons */}
+			<div class="flow lessons">
+				<h2>lessons learned</h2>
+				<p class="text">
+					Working on this project taught me the importance of planning
+					and writing clean, reusable code. These practices are
+					crucial for maintaining long-term consistency and
+					scalability. Additionally, I learned to be adaptable and
+					flexible, adjusting to changing requirements and unexpected
+					challenges during development. This experience helped
+					solidify my project management skills and proficiency with
+					modern technologies like Next.js and Zustand.
+				</p>
+			</div>
+			{/* Conclusion */}
+			<div class="flow conclusion">
+				<h2>conclusion</h2>
+				<p class="text">
+					This e-commerce project was a highly enriching experience
+					both technically and personally. It showcases my ability to
+					tackle challenges, learn new technologies, and adapt to
+					different situations to deliver the best possible solution.
+					The importance of careful planning and a flexible, adaptable
+					approach to project development was clearly demonstrated,
+					and the lessons learned have positively influenced my future
+					projects.
+				</p>
+			</div>
+		</section>
+	</main>
+</Layout>
