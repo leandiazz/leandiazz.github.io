@@ -4,12 +4,35 @@ import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<!-- ! TODO read and apply this https://astro.build/blog/future-of-astro-zero-js-view-transitions/ -->
 <style>
-	:root {
-		--section-border: 30px;
-		--section-padding: 50px;
-		--items-gap: 30px;
+	.text-p {
+		color: #404040;
+		font-size: 1.15rem;
+		line-height: 35px;
+	}
+	.text-p-small {
+		font-size: 0.9rem;
+		line-height: 28px;
+		color: #404040;
+	}
+	.work-text {
+		line-height: 1.75rem;
+		color: #404040;
+		:nth-child(3)& {
+			margin-bottom: 2rem;
+		}
+	}
+	.study .title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		& h3 {
+			font-size: 18px;
+			margin: 0;
+		}
+		& span {
+			font-size: 12px;
+		}
 	}
 
 	.first-section {
@@ -28,11 +51,6 @@ import Layout from "../layouts/Layout.astro";
 				font-size: 40px;
 				margin: 0;
 				line-height: 61px;
-			}
-			p {
-				font-size: 18px;
-				line-height: 35px;
-				color: #404040;
 			}
 			.contact {
 				padding-top: 4rem;
@@ -76,21 +94,6 @@ import Layout from "../layouts/Layout.astro";
 				flex-direction: column;
 				gap: 10px;
 			}
-			.study {
-				h3 {
-					font-size: 18px;
-					margin: 0;
-					& span {
-						font-size: 12px;
-						font-weight: normal;
-					}
-				}
-				p {
-					font-size: 15px;
-					line-height: 28px;
-					color: #404040;
-				}
-			}
 		}
 	}
 	.second-section {
@@ -105,13 +108,14 @@ import Layout from "../layouts/Layout.astro";
 			border-radius: var(--section-border);
 			padding: var(--section-padding);
 		}
-
+		/* TODO make carrousel of projects ......... */
+		/* 
 		.carrousel-control {
-			/* TODO make carrousel of projects ......... */
 			width: 100%;
 			height: 100px;
 			background-color: rgb(196, 177, 177);
-		}
+		} 
+*/
 		.work-case {
 			display: flex;
 			gap: 50px;
@@ -128,10 +132,7 @@ import Layout from "../layouts/Layout.astro";
 				align-items: center;
 				gap: 20px;
 				height: 32px;
-				h3 {
-					font-size: 25px;
-					margin: 0;
-				}
+
 				& ul {
 					list-style: none;
 					padding-left: 0;
@@ -156,6 +157,9 @@ import Layout from "../layouts/Layout.astro";
 				text-decoration: none;
 			}
 		}
+	}
+	.cruelsummer-title {
+		font-size: 1.4rem;
 	}
 	.cruelsummer-second-p {
 		margin-bottom: 2em;
@@ -189,7 +193,7 @@ import Layout from "../layouts/Layout.astro";
 					Hey, I’m Leandro, a frontend dev from Buenos Aires,
 					Argentina.
 				</h1>
-				<p>
+				<p class="text-p">
 					Whether it’s React.js or Next.js, I weave digital
 					experiences that users will love. Clean code, performance
 					optimization, and accessibility are my daily bread, I expect
@@ -298,12 +302,11 @@ import Layout from "../layouts/Layout.astro";
 				<h2 class="section-title">Studies</h2>
 				<div class="items">
 					<div class="study">
-						<h3>
-							Technical Degree in Programming <span
-								>06/2024 - Present</span
-							>
-						</h3>
-						<p>
+						<div class="title">
+							<h3>Technical Degree in Programming</h3>
+							<span>06/2024 - Present</span>
+						</div>
+						<p class="text-p-small">
 							I am beginning a Technical Degree in Programming at
 							UTN. My studies focus on developing skills to
 							analyze and solve software programming problems,
@@ -312,12 +315,11 @@ import Layout from "../layouts/Layout.astro";
 						</p>
 					</div>
 					<div class="study">
-						<h3>
-							Full-Stack Web Developer <span
-								>04/2023 - 11/2023</span
-							>
-						</h3>
-						<p>
+						<div class="title">
+							<h3>Full-Stack Web Developer</h3>
+							<span>04/2023 - 11/2023</span>
+						</div>
+						<p class="text-p-small">
 							I acquired skills mainly in React JS, Angular and
 							Node JS for network operations. I used Firebase for
 							authentication and data storage, as well as Tailwind
@@ -340,9 +342,12 @@ import Layout from "../layouts/Layout.astro";
 					/>
 					<div>
 						<div class="title">
-							<h3 class="cruelsummer-title">
+							<span
+								class="cruelsummer-title"
+								transition:name="cruelsummer-title"
+							>
 								Cruel Summer Store
-							</h3>
+							</span>
 							<ul>
 								<a href="https://cruelsummer.vercel.app"
 									><svg
@@ -375,16 +380,16 @@ import Layout from "../layouts/Layout.astro";
 							</ul>
 						</div>
 						<p
-							class="text"
-							transition:name="text cruelsummer-first-p"
+							class="work-text"
+							transition:name="text cruelsummer-p-1"
 						>
 							This project involved designing and developing a
 							full-fledged e-commerce platform from scratch all by
 							myself using Next.js.
 						</p>
 						<p
-							class="text cruelsummer-second-p"
-							transition:name="text cruelsummer-second-p"
+							class="work-text"
+							transition:name="text cruelsummer-p-2"
 						>
 							Key functionalities include product management with
 							Google Sheets as database, data validation with

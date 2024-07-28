@@ -5,31 +5,18 @@ import SheetsLogo from "../assets/SheetsLogo.astro";
 import TypescriptLogo from "../assets/TypescriptLogo.astro";
 import ZodLogo from "../assets/ZodLogo.astro";
 import ZustandLogo from "../assets/ZustandLogo.astro";
+import Footer from "../components/Footer.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <style>
-	.lessons,
-	.conclusion {
-		align-self: center;
-		& > h2 {
-			text-align: center;
-		}
-	}
 	main {
 		max-width: 1660px;
 		margin-inline: auto;
 		padding: 50px;
 	}
-	h1,
-	h3 {
-		font-size: 35px;
-		margin: 0;
-	}
-	h2 {
-		font-weight: 600;
-		font-size: 1.875rem;
-		line-height: 2.25rem;
+	.cruelsummer-title {
+		font-size: 1.4rem;
 	}
 	.text {
 		color: #404040;
@@ -37,8 +24,25 @@ import Layout from "../layouts/Layout.astro";
 		max-width: 65ch;
 		line-height: 1.75rem;
 	}
-	.feature {
-		font-weight: bold;
+	.project-image {
+		max-width: 750px;
+		align-self: center;
+		& img {
+			width: 100%;
+			border-radius: 10px;
+		}
+	}
+	.lessons,
+	.conclusion {
+		align-self: center;
+		& > h2 {
+			text-align: center;
+		}
+	}
+	h2 {
+		font-weight: 600;
+		font-size: 1.875rem;
+		line-height: 2.25rem;
 	}
 	section {
 		display: flex;
@@ -46,12 +50,8 @@ import Layout from "../layouts/Layout.astro";
 		gap: 4rem;
 		margin-block: 5rem;
 	}
-	.project-image {
-		max-width: 750px;
-		align-self: center;
-		& .cruelsummer-image {
-			width: 100%;
-		}
+	.feature {
+		font-weight: bold;
 	}
 	.features-section {
 		display: flex;
@@ -104,13 +104,18 @@ import Layout from "../layouts/Layout.astro";
 		<section>
 			{/* Introduction */}
 			<div class="flow">
-				<h3 class="cruelsummer-title">Cruel Summer Store</h3>
-				<p class="text" transition:name="text cruelsummer-first-p">
+				<span
+					class="cruelsummer-title"
+					transition:name="cruelsummer-title"
+				>
+					Cruel Summer Store
+				</span>
+				<p class="text" transition:name="text cruelsummer-p-1">
 					This project involved designing and developing a
 					full-fledged e-commerce platform from scratch all by myself
 					using Next.js.
 				</p>
-				<p class="text" transition:name="text cruelsummer-second-p">
+				<p class="text" transition:name="text cruelsummer-p-2">
 					Key functionalities include product management with Google
 					Sheets as database, data validation with TypeScript and Zod,
 					a persistent shopping cart using Zustand, and responsive
@@ -123,7 +128,6 @@ import Layout from "../layouts/Layout.astro";
 				<img
 					src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
 					alt="cruel summer store"
-					class="cruelsummer-image"
 					transition:name="cruelsummer-image"
 				/>
 			</div>
@@ -247,4 +251,5 @@ import Layout from "../layouts/Layout.astro";
 			</div>
 		</section>
 	</main>
+	<Footer />
 </Layout>
