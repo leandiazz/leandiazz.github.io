@@ -108,14 +108,6 @@ import Layout from "../layouts/Layout.astro";
 			border-radius: var(--section-border);
 			padding: var(--section-padding);
 		}
-		/* TODO make carrousel of projects ......... */
-		/* 
-		.carrousel-control {
-			width: 100%;
-			height: 100px;
-			background-color: rgb(196, 177, 177);
-		} 
-*/
 		.work-case {
 			display: flex;
 			gap: 50px;
@@ -189,7 +181,7 @@ import Layout from "../layouts/Layout.astro";
 		<section class="first-section">
 			<!-- about and socials -->
 			<div class="group about">
-				<h1>
+				<h1 class="ff-brockmann">
 					Hey, I’m Leandro, a frontend dev from Buenos Aires,
 					Argentina.
 				</h1>
@@ -299,7 +291,7 @@ import Layout from "../layouts/Layout.astro";
 
 			<!-- my studies -->
 			<div class="group studies">
-				<h2 class="section-title">Studies</h2>
+				<h2 class="section-title ff-brockmann">Studies</h2>
 				<div class="items">
 					<div class="study">
 						<div class="title">
@@ -333,13 +325,15 @@ import Layout from "../layouts/Layout.astro";
 		<section class="second-section">
 			<!-- projects -->
 			<div class="group">
-				<h2 class="section-title">My last work</h2>
+				<h2 class="section-title ff-brockmann">My last work</h2>
 				<div class="work-case">
-					<img
-						src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
-						alt="cruelsummer store"
-						transition:name="cruelsummer-image"
-					/>
+					<picture>
+						<img
+							src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
+							alt="cruelsummer store"
+							transition:name="cruelsummer-image"
+						/>
+					</picture>
 					<div>
 						<div class="title">
 							<span
@@ -409,7 +403,7 @@ import Layout from "../layouts/Layout.astro";
 
 			<!-- tech i use -->
 			<div class="group tech">
-				<h2 class="section-title">Tech i use</h2>
+				<h2 class="section-title ff-brockmann">Tech i use</h2>
 				<div class="grid">
 					<svg
 						width="61"
