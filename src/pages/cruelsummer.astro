@@ -19,13 +19,12 @@ import Layout from "../layouts/Layout.astro";
 	main {
 		max-width: 1660px;
 		margin-inline: auto;
-		/* --content-max-width: 1300px; */
-		margin-top: 5rem;
-		/* background-color:; */
+		padding: 50px;
 	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 500;
+	h1,
+	h3 {
+		font-size: 35px;
+		margin: 0;
 	}
 	h2 {
 		font-weight: 600;
@@ -48,7 +47,7 @@ import Layout from "../layouts/Layout.astro";
 		margin-block: 5rem;
 	}
 	.project-image {
-		max-width: 700px;
+		max-width: 750px;
 		align-self: center;
 		& .cruelsummer-image {
 			width: 100%;
@@ -105,30 +104,30 @@ import Layout from "../layouts/Layout.astro";
 		<section>
 			{/* Introduction */}
 			<div class="flow">
-				<h1>Cruel Summer Store</h1>
-				<p class="text">
-					Developing a dynamic and user-friendly e-commerce website
-					was an exciting and challenging experience. This project
-					involved designing and developing a full-fledged e-commerce
-					platform from scratch using Next.js.
+				<h3 class="cruelsummer-title">Cruel Summer Store</h3>
+				<p class="text" transition:name="text cruelsummer-first-p">
+					This project involved designing and developing a
+					full-fledged e-commerce platform from scratch all by myself
+					using Next.js.
 				</p>
-				<p class="text">
+				<p class="text" transition:name="text cruelsummer-second-p">
 					Key functionalities include product management with Google
-					Sheets, data validation with TypeScript and Zod, a
-					persistent shopping cart using Zustand, and responsive
-					design with Tailwind CSS and Shadcn. My role encompassed the
-					entire process, from initial design to development and
-					deployment.
+					Sheets as database, data validation with TypeScript and Zod,
+					a persistent shopping cart using Zustand, and responsive
+					design with Tailwind CSS and Shadcn.
 				</p>
 			</div>
+
 			{/* Photo */}
 			<div class="project-image">
 				<img
-					src="https://i.ibb.co/BGJ6mJJ/1.png"
+					src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
 					alt="cruel summer store"
 					class="cruelsummer-image"
+					transition:name="cruelsummer-image"
 				/>
 			</div>
+
 			{/* Purpose */}
 			<div class="flow">
 				<h2>purpose and goal</h2>
@@ -142,6 +141,7 @@ import Layout from "../layouts/Layout.astro";
 					providing an optimized user experience.
 				</p>
 			</div>
+
 			{/* Features MOST PART DONE */}
 			<div class="features-section">
 				<div class="logoslist firstlist">
@@ -179,6 +179,7 @@ import Layout from "../layouts/Layout.astro";
 					</p>
 				</div>
 			</div>
+
 			{/* Challenges */}
 			<div class="features-section">
 				<div class="flow">
@@ -214,6 +215,7 @@ import Layout from "../layouts/Layout.astro";
 					</div>
 				</div>
 			</div>
+
 			{/* Lessons */}
 			<div class="flow lessons">
 				<h2>lessons learned</h2>
@@ -228,6 +230,7 @@ import Layout from "../layouts/Layout.astro";
 					modern technologies like Next.js and Zustand.
 				</p>
 			</div>
+
 			{/* Conclusion */}
 			<div class="flow conclusion">
 				<h2>conclusion</h2>

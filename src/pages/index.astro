@@ -32,6 +32,7 @@ import Layout from "../layouts/Layout.astro";
 			p {
 				font-size: 18px;
 				line-height: 35px;
+				color: #404040;
 			}
 			.contact {
 				padding-top: 4rem;
@@ -87,6 +88,7 @@ import Layout from "../layouts/Layout.astro";
 				p {
 					font-size: 15px;
 					line-height: 28px;
+					color: #404040;
 				}
 			}
 		}
@@ -155,6 +157,9 @@ import Layout from "../layouts/Layout.astro";
 			}
 		}
 	}
+	.cruelsummer-second-p {
+		margin-bottom: 2em;
+	}
 	.section-title {
 		font-size: 40px;
 		line-height: 40px;
@@ -170,11 +175,15 @@ import Layout from "../layouts/Layout.astro";
 		grid-template-columns: repeat(4, 1fr);
 		place-items: center;
 	}
+	.text {
+		color: #404040;
+	}
 </style>
-<Layout title="Welcome to Astro.">
+<Layout title="Leandro ~ Frontend Developer">
 	<Header />
 	<main>
 		<section class="first-section">
+			<!-- about and socials -->
 			<div class="group about">
 				<h1>
 					Hey, I’m Leandro, a frontend dev from Buenos Aires,
@@ -260,6 +269,8 @@ import Layout from "../layouts/Layout.astro";
 					</ul>
 				</div>
 			</div>
+
+			<!-- clock and controls -->
 			<div class="controls">
 				<div class="group">
 					<!-- <div>Toggle Theme <button>Toggle</button></div> -->
@@ -281,6 +292,8 @@ import Layout from "../layouts/Layout.astro";
 					</svg>
 				</div>
 			</div>
+
+			<!-- my studies -->
 			<div class="group studies">
 				<h2 class="section-title">Studies</h2>
 				<div class="items">
@@ -316,16 +329,20 @@ import Layout from "../layouts/Layout.astro";
 		</section>
 
 		<section class="second-section">
+			<!-- projects -->
 			<div class="group">
 				<h2 class="section-title">My last work</h2>
 				<div class="work-case">
 					<img
 						src="https://raw.githubusercontent.com/leandiazz/leandiazz.github.io/main/public/1.webp"
 						alt="cruelsummer store"
+						transition:name="cruelsummer-image"
 					/>
 					<div>
 						<div class="title">
-							<h3>Cruelsummer Store</h3>
+							<h3 class="cruelsummer-title">
+								Cruel Summer Store
+							</h3>
 							<ul>
 								<a href="https://cruelsummer.vercel.app"
 									><svg
@@ -357,12 +374,18 @@ import Layout from "../layouts/Layout.astro";
 								>
 							</ul>
 						</div>
-						<p class="text">
+						<p
+							class="text"
+							transition:name="text cruelsummer-first-p"
+						>
 							This project involved designing and developing a
 							full-fledged e-commerce platform from scratch all by
 							myself using Next.js.
 						</p>
-						<p class="text">
+						<p
+							class="text cruelsummer-second-p"
+							transition:name="text cruelsummer-second-p"
+						>
 							Key functionalities include product management with
 							Google Sheets as database, data validation with
 							TypeScript and Zod, a persistent shopping cart using
@@ -378,6 +401,8 @@ import Layout from "../layouts/Layout.astro";
           TODO make carrousel of projects .........
         </div> -->
 			</div>
+
+			<!-- tech i use -->
 			<div class="group tech">
 				<h2 class="section-title">Tech i use</h2>
 				<div class="grid">
@@ -731,5 +756,5 @@ import Layout from "../layouts/Layout.astro";
 			</div>
 		</section>
 	</main>
+	<Footer />
 </Layout>
-<Footer />
