@@ -1,0 +1,25 @@
+---
+import Card from "./card.astro"
+---
+<section class="wrapper">
+  <h2>projects</h2>
+  <div class="projects-grid">
+    <Card />
+  </div>
+</section>
+
+<style>
+  section {
+    padding-block: 1rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+  }
+  .projects-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+</style>

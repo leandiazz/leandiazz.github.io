@@ -1,5 +1,7 @@
 ---
-
+import Hero from '../components/hero.astro'
+import Navbar from '../components/navbar.astro'
+import Projects from '../components/projects.astro'
 ---
 
 <html lang="en">
@@ -8,9 +10,24 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Leandro Diaz ~ Frontend Dev</title>
 	</head>
 	<body>
-		<h1>Portfolio in progress...</h1>
+    <Navbar />
+    <Hero />
+    <Projects />
 	</body>
 </html>
+
+<style is:global>
+  body {
+    padding-block: 1.25rem;
+    background-color: #171717;
+    font-family: 'Inter Variable', sans-serif; 
+    color: #D1D5DB;
+  }
+  .wrapper {
+    margin-inline: auto;
+    max-width: 832px;
+  }
+</style>
